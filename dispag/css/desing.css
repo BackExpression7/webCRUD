@@ -1,0 +1,96 @@
+header {
+    background-color: rgb(7, 7, 177);
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+  .bts{
+    width: 1cm;
+    height: 1cm;
+    padding: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 5px;
+    border: 3px solid transparent;
+    color: rgba(0, 0, 0, 0.979);
+    background-color: rgba(144, 150, 143, 0.507);
+    transition-property: background-color, color, border;
+    transition-duration: 0.4s;
+    border-radius: 12px;
+  }
+  .bts:hover{
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: 3px solid rgb(255, 255, 255);
+   }
+   .btn-label {
+    width: 2rem;
+    height: 1.6rem;
+  }
+  .header-button {
+    width: 1.9rem;
+    height: 0.2rem;
+    background: #000;
+    position: relative;
+    top: 1rem;
+    left:2rem ;  
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .header-button::before,.header-button::after {
+    content: "";
+    width: 2rem;
+    height: 0.2rem;
+    background: #000;
+    position: absolute;
+    top: -0.6rem;
+  }
+  .header-button::after {
+    top: 0.6rem;
+  }
+
+  .menu {
+    background: #a19f9f;
+    width: auto;
+    height: 4rem;
+    position: fixed;
+    z-index: 9;
+    top: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    padding-top: 2rem;
+    transition: all 0.5s;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    margin: 0.5rem;
+  }
+  a {
+    margin: 0 1rem;
+    color: #000;
+    text-decoration: none;
+    font-size: 20;
+  }
+  .checkbox:checked ~ .menu{
+    background: rgb(87, 83, 83);
+    top: 5rem;
+    width: auto;
+    height: 15cm;
+  }
+
+  .mas{
+    cursor: pointer;
+    position: relative;
+    left:31cm;
+    top: 10cm;
+    z-index: 10;
+    width: 5rem;
+    width: 5rem;
+    display: flex;
+  }
