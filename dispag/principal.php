@@ -1,3 +1,6 @@
+<?php
+$usuario=$_GET['var'];
+?>
 <html>
     <head>
         <title>ReadingHeaven</title>
@@ -6,15 +9,16 @@
         <link rel="stylesheet" href="css/modal.css">
         <script src="js/modal.js"></script>
     </head>
-    <body style=" background-color: rgb(88, 88, 238);" onload="cargado()">
+    <body style=" background-color: rgb(226, 130, 21)" onload="cargado()">
     <input type="checkbox" id="btn-nav" class="checkbox" style="display: none;">
         <header>
             <label for="btn-nav" class="btn-label">
             <div class="header-button"></div>
             </label>
-            <h1><img src="imagenes/logo3.png" alt="logo" style="width: 5rem;">ReadingHeaven</h1>
+            <h1 style="font-size:1.5cm;"><img src="imagenes/logo3.png" alt="logo" style="width: 5rem;">ReadingHeaven</h1>
            <span><img src="imagenes/buscar.png" class="bts">
             <input type ="submit" value="AZ" class="bts"></span>
+           <?php echo " <p class='us'>Bienvenido: <br/> $usuario</p>"; ?>
         </header>
         <nav class="menu">
       <ul>
@@ -38,12 +42,12 @@
                         <h2 align="center">Ingrese su nuevo libro</h2>
                     </div>
                     <div class="modal-body" align="center">
-                    <form action="paginas/send.php" method="GET">
+                    <form action="principal.php" method="GET">
                         Titulo :<input type="text" name="title" id="n1"></br>
                         Autor :<input type="text" name="author" id="n2"></br>
                         Genero:<input type="text" name="genre" id="n3"></br>
-                        Numero de capitulos <input type="text" name="chapNumber" id="n4"></br>
-                        <input type="submit">
+                        Numero de capitulos <input type="text" name="chapNumber" id="n4"></br></br> 
+                        <input type="submit" class="enviar">
                     </form>
                     </div>
                     <div class="footer">

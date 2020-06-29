@@ -1,5 +1,6 @@
 header {
-    background-color: rgb(7, 7, 177);
+    border-radius: 20px;
+    background-color: rgb(168, 166, 164);
     position: relative;
     margin: auto;
     display: flex;
@@ -53,7 +54,7 @@ header {
   }
 
   .menu {
-    background: #a19f9f;
+    background: #979595;
     width: auto;
     height: 4rem;
     position: fixed;
@@ -78,10 +79,10 @@ header {
     font-size: 20;
   }
   .checkbox:checked ~ .menu{
-    background: rgb(87, 83, 83);
+    background: rgb(255, 255, 255);
     top: 5rem;
     width: auto;
-    height: 15cm;
+    height: 14cm;
   }
 
   .mas{
@@ -94,3 +95,24 @@ header {
     width: 5rem;
     display: flex;
   }
+  .us{
+    position: relative;
+    right: 1cm;
+    font-size: large;
+  }
+  .enviar{
+    width: 2cm;
+    height: 1cm;
+    background-color: rgba(111, 240, 88, 0.507);
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 5px;
+    border: 3px solid transparent;
+    transition-property: background-color, color, border;
+    transition-duration: 0.4s;
+  }
+  .enviar:hover{
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: 3px solid rgb(255, 255, 255);
+   }
