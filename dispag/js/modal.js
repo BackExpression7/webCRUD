@@ -16,3 +16,8 @@ function cargado(){
     document.getElementById("n3").value = ""
     document.getElementById("n4").value = ""
 }
+
+function opciones(){
+    let modal2 = document.getElementById('modal2');
+    modal2.style.display ='block';
+}

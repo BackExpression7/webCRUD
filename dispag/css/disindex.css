@@ -12,11 +12,13 @@
     transition-duration: 0.4s;
     border-radius: 12px;
   }
+
   .bts:hover{
     background-color: transparent;
     color: rgb(0, 0, 0);
     border: 3px solid rgb(255, 255, 255);
    }
+
    header {
     width: 100%;
     position: relative;
@@ -25,14 +27,15 @@
     border-radius: 12px;
     background-color: rgba(169, 169, 169, 0);
   }
+
   .header-logo {
     width: 5rem;
   }
-
+  
   .log{
       background-color: rgba(169, 169, 169, 0.733);
       margin: auto;
       text-align: center;
-      width: 15cm;
-      height: 10cm;
+      width: 9cm;
+      height: 9cm;
   }
