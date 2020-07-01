@@ -7,17 +7,21 @@ function modale(){
 
 function cerrar(){
     let modal1 = document.getElementById('modal1');
+    let modalactual= document.getElementById('modalactual');
         modal1.style.display ='none';
-}
-
-function cargado(){
-    document.getElementById("n1").value = ""
-    document.getElementById("n2").value = ""
-    document.getElementById("n3").value = ""
-    document.getElementById("n4").value = ""
+        modalactual.style.display ='none';
 }
 
 function opciones(){
     let modal2 = document.getElementById('modal2');
+    if(modal2.style.display =='none'){
     modal2.style.display ='block';
+    }else{
+        modal2.style.display='none'
+    }
+}
+
+function modalactual(){
+    let modalactual= document.getElementById('modalactual');
+    modalactual.style.display ='block';
 }

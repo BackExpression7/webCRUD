@@ -29,14 +29,17 @@
 	if (isset($_POST['usuario']))
 	{
 	$usuario= $_POST['usuario'];
+	echo $usuario;
 	$cont1= $_POST['cont1'];
 	$cont1= md5($cont1);
 	$advert="la contraseña o el Usuario no coinciden";
 	while($opciones =$consulta1->fetch_assoc())
 	{
-		if ($opciones['user_name']==$usuario)
+		echo $opciones["user_name"];
+		echo $opciones["user_password"];
+		if ($opciones['user_name']===$usuario)
 		{
-			if($opciones['user_password']==$cont1)
+			if($opciones['user_password']===$cont1)
 			{
 				header("Status: 301 Moved Permanently");
 				header("Location: dispag/principal.php?var=$usuario");
