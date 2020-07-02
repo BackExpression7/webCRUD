@@ -1,5 +1,6 @@
 <?php
 $usuario=$_GET['var'];
+$edtiyulo=NULL;
 $conexion= mysqli_connect ("localhost","root","")or die("no se puede conectar al servidor");
 mysqli_select_db($conexion,"manga_db")or die ("No se puede ajjaja");
 $consulta1 =mysqli_query($conexion,"select * from users") or die ("fallo en la consulta");
@@ -21,14 +22,16 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
         <link rel="stylesheet" href="css/modal.css">
         <script src="js/modal.js"></script>
     </head>
-    <body style=" background-color: rgb(226, 130, 21)">
+   
+    <body>
+    <div class="body" class="body">   
     <input type="checkbox" id="btn-nav" class="checkbox" style="display: none;">
         <header>
             <label for="btn-nav" class="btn-label">
             <div class="header-button"></div>
             </label>
             <h1 style="font-size:1.5cm;"><img src="imagenes/logo3.png" alt="logo" style="width: 5rem;">ReadingHeaven</h1>
-           <span><img src="imagenes/buscar.png" class="bts">
+           <span><a href="#" onclick="modal3()"><img src="imagenes/buscar.png" class="bts"></a>
             <a href="principal.php?var=<?php echo $usuario?>&az=1" class="bts">AZ^</a></span>
            <?php echo " <p class='us'>Bienvenido: <br/> $usuario</p>"; ?>
         </header>
@@ -36,13 +39,21 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
       <ul><br/><br/><br/><br/>
 		<li><a href="biblioteca.php?var=<?php echo $usuario ?>">Biblioteca</a></li>
         <li><a href="leidos.php?var=<?php echo $usuario ?>">Leidos</a></li>
-        <li><a href="index.?var=<?php echo $usuario ?>">Configuracion</a></li>
+        <li><a href="#">Configuracion</a></li>
         <li><a href="../index.php">Log out</a></li>
       </ul>      
-        
     </nav>
     <a href="#" onclick="modale()"><img src="imagenes/mas.png" alt="añadir" class="mas"></a>
-
+    <div id="modal3" class="modal3">
+                    <div class="contenido-modal3">
+                    <div class="modal-body3" align="center">
+                    <form action="principal.php?var=<?php echo $usuario?>" method="post">
+                    <input type="text" name="busqueda" id="busqueda">
+                        <input type="submit" class="opis"  style="background-color: #3EA8BD;" value="buscar">
+                    </form>
+                    </div>
+                    </div>
+                </div>
     <div id="modal1" class="modal">
             <div class="flex" id="flex">
                 <div class="contenido-modal">
@@ -63,7 +74,10 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </SELECT></br>
-                        Estatus de la lectura: <input type="n7" name="n7" id="n7"></br></br>   
+                        Estatus de la lectura: <SELECT name="n7" id="n7"> 
+                            <option value="En Proceso">En Proceso</option>
+                            <option value="Leido">Leido</option>
+                        </SELECT></br></br>   
                         <input type="submit" class="enviar" >
                     </form>
                     </div>
@@ -82,7 +96,11 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
            <?php
            if (isset($_GET['az'])) {
             $consulta2=$consultaco;
-           }
+           }else if (isset($_POST['busqueda'])) {
+               $busca=$_POST['busqueda'];
+            $busqueda =mysqli_query($conexion,"select reading.current_chapter,reading.score, reading.read_status,manga.manga_title,manga.manga_author,manga.manga_genre,manga.manga_chapter_tally FROM reading INNER JOIN manga ON reading.manga_id=manga.manga_id WHERE reading.user_id =$id_user AND manga.manga_title LIKE '$busca'") or die ("fallo en la consulta");
+           $consulta2=$busqueda;
+        }
            while($document = $consulta2->fetch_assoc())
                 {?>
                <td><?php echo  "<span id='tit'>{$document['manga_title']}</span>";?><br/>
@@ -98,7 +116,7 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
                     <div class="contenido-modal2">
                     <div class="modal-body2" align="center">
                         <a href="send.php?var=<?php echo $usuario?>&var1=<?php echo $document['manga_title']?>&var2=1" class="opis" style="background-color: #A50202;">Borrar</a><br/><br/>
-                        <a href="#" onclick="modalactual()" class="opis" style="background-color: #3EA8BD;">Editar</a>
+                        <a href="principal.php?var=<?php echo $usuario?>&edtiyulo=<?php echo $document['manga_title']?>&vared=1" class="opis" style="background-color: #3EA8BD;">Editar</a>
                     </div>
                     </div>
                 </div>
@@ -114,7 +132,12 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
                         <h2 align="center">Edite su libro seleccionado</h2>
                     </div>
                     <div class="modal-body" align="center">
-                    <form action="send.php?var=<?php echo $usuario?>&var1=<?php echo $document['manga_title']?>&var2=1" method="post">
+                        <?php
+                        if (isset($_GET['vared'])) {
+                            ?><script>modalactual();</script><?php
+                            $edtiyulo=$_GET['edtiyulo'];
+                        }?>
+                    <form action="send.php?var=<?php echo $usuario?>&var1=<?php echo $edtiyulo?>&var2=1" method="post">
                         Nuevo Titulo :<input type="text" name="n1" id="n1"></br>
                         Nuevo Autor :<input type="text" name="n2" id="n2"></br>
                         Nuevo Genero:<input type="text" name="n3" id="n3"></br>
@@ -127,7 +150,10 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </SELECT></br>
-                        Nuevo Estatus de la lectura: <input type="n7" name="n7" id="n7"></br></br>   
+                        Nuevo Estatus de la lectura: <SELECT name="n7" id="n7"> 
+                            <option value="En Proceso">En Proceso</option>
+                            <option value="Leido">Leido</option>
+                        </SELECT></br></br>   
                         <input type="submit" class="enviar" >
                     </form>
                     </div>
@@ -137,6 +163,7 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
                 </div>
             </div>
         </div>               
-          
+</div> 
 </body>
+
 </html>

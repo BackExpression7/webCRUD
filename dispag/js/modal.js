@@ -8,12 +8,14 @@ function modale(){
 function cerrar(){
     let modal1 = document.getElementById('modal1');
     let modalactual= document.getElementById('modalactual');
-    let modalbiblioteca= document.getElementById('modalbiblioteca');
         modal1.style.display ='none';
         modalactual.style.display ='none';
-        modalbiblioteca.style.display ='none';
+       
 }
-
+function cerrar2(){
+    let modalbiblioteca= document.getElementById('modalbiblioteca');
+    modalbiblioteca.style.display ='none';
+}
 
 function modalactual(){
     let modalactual= document.getElementById('modalactual');
@@ -23,4 +25,12 @@ function modalbiblioteca(){
     let modalbiblioteca= document.getElementById('modalbiblioteca');
     modalbiblioteca.style.display ='block';
     
+}
+function modal3(){
+    let modal3= document.getElementById('modal3');
+    if (modal3.style.display =='block') {
+        modal3.style.display ='none';
+    }else{
+    modal3.style.display ='block';
+    }
 }

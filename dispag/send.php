@@ -19,11 +19,19 @@ while($document = $consulta2->fetch_assoc())
                 {
                     $id_manga=$document['manga_id'];
                 }	 
-            } 
+			} 
+			
 /*  borrar mangas */ 
 if ($_GET['var2']==1) {
     $consulta2 = mysqli_query($conexion,"DELETE FROM reading WHERE user_id = $id_user AND manga_id = $id_manga")or die ("fallo en la subida de datos");
     $consulta2 = mysqli_query($conexion,"DELETE FROM manga WHERE manga_id = $id_manga")or die ("fallo en la subida de datos");
+}/*  agregar mangas de bibioteca */ 
+elseif ($_GET['var2']==3) {
+	$n5 = $_POST['n5'];
+				$n6 = $_POST['n6'];
+				$n7 = $_POST['n7'];
+	$consu = mysqli_query($conexion,"INSERT INTO reading(user_id, manga_id, current_chapter, score, read_status) VALUES ('$id_user', '$id_manga', '$n5', '$n6', '$n7')")or die ("fallo en la subida de datos");
+
 }
 /* Agregar nuevos mangas */ 
 if (isset($_POST['n1']))
