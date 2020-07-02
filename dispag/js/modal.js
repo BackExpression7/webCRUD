@@ -8,20 +8,19 @@ function modale(){
 function cerrar(){
     let modal1 = document.getElementById('modal1');
     let modalactual= document.getElementById('modalactual');
+    let modalbiblioteca= document.getElementById('modalbiblioteca');
         modal1.style.display ='none';
         modalactual.style.display ='none';
+        modalbiblioteca.style.display ='none';
 }
 
-function opciones(){
-    let modal2 = document.getElementById('modal2');
-    if(modal2.style.display =='none'){
-    modal2.style.display ='block';
-    }else{
-        modal2.style.display='none'
-    }
-}
 
 function modalactual(){
     let modalactual= document.getElementById('modalactual');
     modalactual.style.display ='block';
+}
+function modalbiblioteca(){
+    let modalbiblioteca= document.getElementById('modalbiblioteca');
+    modalbiblioteca.style.display ='block';
+    
 }

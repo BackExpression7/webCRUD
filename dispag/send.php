@@ -24,10 +24,6 @@ while($document = $consulta2->fetch_assoc())
 if ($_GET['var2']==1) {
     $consulta2 = mysqli_query($conexion,"DELETE FROM reading WHERE user_id = $id_user AND manga_id = $id_manga")or die ("fallo en la subida de datos");
     $consulta2 = mysqli_query($conexion,"DELETE FROM manga WHERE manga_id = $id_manga")or die ("fallo en la subida de datos");
-}/* editar mangas */ 
-else if ($_GET['var2']==2) {
-	
-    $consulta2 = mysqli_query($conexion,"UPDATE manga SET manga_title = $n, manga_author = $id_manga WHERE manga_id = $id_manga");
 }
 /* Agregar nuevos mangas */ 
 if (isset($_POST['n1']))
@@ -39,6 +35,11 @@ if (isset($_POST['n1']))
 				$n5 = $_POST['n5'];
 				$n6 = $_POST['n6'];
 				$n7 = $_POST['n7'];
+				/* editar mangas */ 
+ if ($_GET['var2']==2) {
+	$consulta2 = mysqli_query($conexion,"UPDATE manga SET manga_title = $n1, manga_author = $n2,manga_genre=$n3,manga_chapter_tally=$n4 WHERE manga_id = $id_manga");
+	$consulta2 = mysqli_query($conexion,"UPDATE manga SET current_chapter=$n5, score=$n6, read_status=$n7 WHERE manga_id = $id_manga AND user_id=$id_user");
+}
 					if($n1==NULL||$n2==NULL||$n3==NULL||$n4==NULL||$n5==NULL||$n6==NULL||$n7==NULL){
 						?>
 						  <p style="color:#ffffff";><?php echo "No debe dejar datos sin rellenar"; ?></p>

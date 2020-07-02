@@ -29,7 +29,7 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
             </label>
             <h1 style="font-size:1.5cm;"><img src="imagenes/logo3.png" alt="logo" style="width: 5rem;">ReadingHeaven</h1>
            <span><img src="imagenes/buscar.png" class="bts">
-            <input type ="submit" value="AZ" class="bts"></span>
+            <a href="principal.php?var=<?php echo $usuario?>&az=1" class="bts">AZ^</a></span>
            <?php echo " <p class='us'>Bienvenido: <br/> $usuario</p>"; ?>
         </header>
         <nav class="menu">
@@ -80,28 +80,29 @@ $consultaco = mysqli_query($conexion,"select reading.current_chapter,reading.sco
            <tr>
                
            <?php
+           if (isset($_GET['az'])) {
+            $consulta2=$consultaco;
+           }
            while($document = $consulta2->fetch_assoc())
                 {?>
-               <td><?php echo  "<span class='tit'>{$document['manga_title']}</span>";?><br/>
+               <td><?php echo  "<span id='tit'>{$document['manga_title']}</span>";?><br/>
                    Autor: <?php echo  "<span id='autor'>{$document['manga_author']}</span>";?><br/>
                    Genero: <?php echo  "<span id='autor''>{$document['manga_genre']}</span>";?><br/>
                    Total de capitulos: <?php echo  "<span id='autor''>{$document['manga_chapter_tally']}</span>";?><br/>
                    Capitulos leidos: <?php echo  "<span id='autor''>{$document['current_chapter']}</span>";?><br/>
                    Calificacion: <?php echo  "<span id='autor''>{$document['score']}";?> Estrellas ☆</span><br/>
                    Estado de  lectura: <?php echo  "<span id='autor''>{$document['read_status']}</span>";?>
-                   </td>
+                  <hr> </td>
                <td>
-                   <a href="#" onclick="opciones()"><img src="imagenes/menu.png" alt="opciones" class="bts" ></a>
-                   <div id="modal2" class="modal2">
-            
-            <div class="contenido-modal2">
-            <div class="modal-body2" align="center">
-                <a href="send.php?var=<?php echo $usuario?>&var1=<?php echo $document['manga_title']?>&var2=1" class="opis" style="background-color: #A50202;">Borrar</a><br/><br/>
-                <a href="#" onclick="modalactual()" class="opis" style="background-color: #3EA8BD;">Editar</a>
-            </div>
-            </div>
-        </div>
-            </td>
+               <div id="modal2" class="modal2">
+                    <div class="contenido-modal2">
+                    <div class="modal-body2" align="center">
+                        <a href="send.php?var=<?php echo $usuario?>&var1=<?php echo $document['manga_title']?>&var2=1" class="opis" style="background-color: #A50202;">Borrar</a><br/><br/>
+                        <a href="#" onclick="modalactual()" class="opis" style="background-color: #3EA8BD;">Editar</a>
+                    </div>
+                    </div>
+                </div>
+               </td>
            </tr>
            <?php } ?>
    </table> 

@@ -38,16 +38,16 @@
         </header>
         <nav class="menu">
       <ul><br/><br/><br/><br/>
-		<li><a href="biblioteca.php?var=<?php echo $usuario ?>"> Biblioteca</a></li>
+		<li><a href="principal.php?var=<?php echo $usuario ?>">Tus Guardados</a></li>
         <li><a href="index.php">Leidos</a></li>
         <li><a href="index.php">Configuracion</a></li>
         <li><a href="../index.php">Log out</a></li>
-      </ul> 
+      </ul>
       </nav>
 
     <div>
         <table align="center">
-           <tr>
+           
            <?php 
            $datos = $base->readMangas($user);
            foreach($datos as $manga){ 
@@ -65,6 +65,7 @@
          </table> 
     </div>
     
+   
     <div id="modal1" class="modal">
             <div class="flex" id="flex">
                 <div class="contenido-modal">
